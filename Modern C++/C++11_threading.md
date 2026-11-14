@@ -1,5 +1,9 @@
 # C++11 多執行緒支援
 
+延伸閱讀：[Thread 生命週期與 std::terminate](C%2B%2B11_thread_lifecycle_and_terminate.md)，對照 joinable、解構收尾與 libc++／libstdc++ 原始碼。
+
+延伸閱讀：[std::lock 的 Deadlock 避免實作](C%2B%2B11_std_lock_deadlock_avoidance.md)，追蹤 lock／try_lock／unlock、RAII 與 release 的責任交接。
+
 ## 核心概念
 
 C++11 標準首次在語言層面引入了對多執行緒程式設計的原生支援，這是 C++ 語言的一個重大進步。在 C++11 之前，多執行緒程式設計需要依賴平台特定的 API（如 POSIX threads 或 Windows threads）或第三方函式庫，導致程式碼可移植性差、標準化程度低。
@@ -119,8 +123,11 @@ int main() {
 
 ### 互斥量與資料保護
 
+下例使用 `std::ref(counter)` 讓執行緒參考同一個物件，原理見 [std::ref 與 std::reference_wrapper](C++11_reference_wrapper.md)。
+
 ```cpp
 #include <iostream>
+#include <functional>
 #include <thread>
 #include <mutex>
 #include <vector>
