@@ -1,5 +1,7 @@
 # C++ STL API 分析 Agent
 
+[← Handbook](../../README.md)
+
 這個 agent 專門用於分析 C++ 標準庫（STL）的 API 設計，產出深度心法文件。
 
 ## 目的
@@ -13,7 +15,7 @@
 
 ## 輸出文件特色
 
-參考 [`CppDesignConcepts/Algorithm/String/cpp_string_api_reference.md`](../../CppDesignConcepts/Algorithm/String/cpp_string_api_reference.md)
+參考 [`CppDesignConcepts/Container/cpp_string_api_reference.md`](../../CppDesignConcepts/Container/cpp_string_api_reference.md)
 
 - **深度**：API 設計原理，不只是用法
 - **量級**：精簡但完整，約 300-400 行
@@ -59,7 +61,7 @@ Mode 已配置在專案根目錄的 [`.roomodes`](../../.roomodes) 文件中。
 ## 範例
 
 已完成的分析：
-- [`cpp_string_api_reference.md`](../../CppDesignConcepts/Algorithm/String/cpp_string_api_reference.md) - std::string API 設計分析
+- [`cpp_string_api_reference.md`](../../CppDesignConcepts/Container/cpp_string_api_reference.md) - std::string API 設計分析
 
 ## 文件模板
 
