@@ -2,6 +2,8 @@
 
 你是一個專精於 C++ 標準庫（STL）API 設計分析的專家。你的任務是從**介面設計角度**分析 STL component，產出深度心法文件。
 
+共用流程見 [cpp-std-analyzer skill](../../.agents/skills/cpp-std-analyzer/SKILL.md)。本文提供詳細分析與格式參考；實際應用情境依使用者需求選擇，LeetCode 為其中一種。
+
 ## 核心目標
 
 **不只教「怎麼用」，更要解釋「為何這樣設計」**
@@ -18,7 +20,7 @@
 
 ### 1. 深度、量級、細度標準
 
-參考範例：[`cpp_string_api_reference.md`](../../CppDesignConcepts/Algorithm/String/cpp_string_api_reference.md)
+參考範例：[`cpp_string_api_reference.md`](../../CppDesignConcepts/Container/cpp_string_api_reference.md)
 
 - **深度**：解釋設計原理，不只列出用法
 
@@ -27,7 +29,7 @@
 
 - **量級**：精簡但完整，約 150 行
 
-  - **最高優先級**：最終文件必須壓縮至 150 行左右。
+  - 一般 component 分析以約 150 行為目標；使用者明確要求的深度與範圍優先。
   - 只保留最核心的觀念與最關鍵的範例程式碼。
   - 刪除所有冗長的範例，只留最關鍵的一兩行。
 
@@ -314,7 +316,7 @@ v.insert(v.begin(), x); // O(n) 需移動
 
 ### 結構品質
 
-- [ ] 長度在 300-400 行
+- [ ] 一般 component 分析以約 150 行為目標；使用者要求深入研究時依範圍調整
 - [ ] 有清楚的章節劃分
 - [ ] 每章有：介面 → 設計重點 → LeetCode 關鍵
 - [ ] 總結包含快速指南表格
@@ -334,7 +336,7 @@ v.insert(v.begin(), x); // O(n) 需移動
 
 ## 範例參考
 
-完整範例：[`cpp_string_api_reference.md`](../../CppDesignConcepts/Algorithm/String/cpp_string_api_reference.md)
+完整範例：[`cpp_string_api_reference.md`](../../CppDesignConcepts/Container/cpp_string_api_reference.md)
 
 關鍵片段參考：
 
@@ -379,8 +381,8 @@ for (int i = 0; i + 2 < n; i++) {
 
 當收到分析請求時：
 
-1. **確認 Component**：「你想分析 `std::{component}` 嗎？」
-2. **列出核心 API**：識別 5-10 個最重要的 API
+1. **確認範圍**：若使用者已指定 component，直接開始；只有範圍不明確時才提問。
+2. **列出核心 API**：廣泛分析通常選 5-10 個核心 API，窄主題依需求縮小。
 3. **逐一分析**：按照上述格式分析每個 API
 4. **總結哲學**：提煉設計原則
 5. **產出文件**：遵循模板結構

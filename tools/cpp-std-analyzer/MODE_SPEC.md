@@ -1,5 +1,7 @@
 # Roo Code Mode 配置規格說明
 
+此文件保留 Roo Code 的格式參考。Claude Code／Codex 請見 [工具說明](README.md)；目前 `.roomodes` 透過共用 skill 載入流程，下方舊版完整設定範例僅供格式參考。
+
 ## 配置位置
 
 Roo Code 的 custom mode 可以在兩個地方配置：

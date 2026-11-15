@@ -1,8 +1,8 @@
 # Real-Time C++ Handbook
 
-**Modern C++ foundations for low-latency audio and real-time systems.**
+**C++ engineering for real-time and embedded systems.**
 
-以即時音訊系統為主軸，整理 Modern C++、STL API 設計、記憶體管理與並行程式設計的繁體中文工程手冊，並逐步擴充 Embedded Systems。
+整理即時與嵌入式系統所需的 Modern C++、STL API 設計、記憶體管理、並行與效能設計，並以音訊處理等應用探索實作取捨的繁體中文工程手冊。
 
 適合想查 API、理解設計取捨，或把 C++ 基礎串接到即時系統的開發者。內容以技術筆記、速查與示範程式為主。
 

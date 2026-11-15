@@ -1,75 +1,47 @@
-# C++ STL API 分析 Agent
+# C++ STL Analyzer
 
-[← Handbook](../../README.md)
+[← Handbook](../../README.md) · [快速開始](QUICKSTART.md)
 
-這個 agent 專門用於分析 C++ 標準庫（STL）的 API 設計，產出深度心法文件。
+從 API 設計角度分析 C++ 標準庫，產出繁體中文心法文件：參數與回傳值語義、效能保證、設計取捨、適用情境與常見錯誤。
 
-## 目的
+## 支援的入口
 
-當需要整理某個 C++ STL component（容器、算法、工具類）時，這個 agent 能：
+| 工具 | 設定 | 使用方式 |
+|---|---|---|
+| Codex | [Repo skill](../../.agents/skills/cpp-std-analyzer/SKILL.md) | `$cpp-std-analyzer 分析 std::vector 的 API 設計` |
+| Claude Code skill | [Skill](../../.claude/skills/cpp-std-analyzer/SKILL.md) | `/cpp-std-analyzer 分析 std::vector 的 API 設計` |
+| Claude Code agent | [Subagent](../../.claude/agents/cpp-std-analyzer.md) | `請使用 cpp-std-analyzer agent 分析 std::vector 的 API 設計` |
+| Roo Code（舊入口） | [`.roomodes`](../../.roomodes) | 選擇 C++ STL Analyzer mode |
 
-1. **從 API 設計角度分析**：不只是使用方法，而是解釋「為何這樣設計」
-2. **產出 LeetCode 實戰建議**：聚焦於競賽和刷題場景
-3. **提供速查表**：TL;DR 格式，快速查閱關鍵 API
-4. **對比設計決策**：分析不同設計方案的權衡
+所有入口均讀取同一份 [共用 workflow](../../.agents/skills/cpp-std-analyzer/SKILL.md)。Repo 共用規則維護於 [AGENTS.md](../../AGENTS.md)，[CLAUDE.md](../../CLAUDE.md) 使用 `@AGENTS.md` 匯入。
 
-## 輸出文件特色
+這些設定隨 repo 使用，不會安裝到使用者的全域設定。Codex skill 在目前對話內執行流程；Claude Code agent 可在獨立 subagent context 執行。
 
-參考 [`CppDesignConcepts/Container/cpp_string_api_reference.md`](../../CppDesignConcepts/Container/cpp_string_api_reference.md)
+## 產出原則
 
-- **深度**：API 設計原理，不只是用法
-- **量級**：精簡但完整，約 300-400 行
-- **細度**：關鍵參數、返回值設計、效能分析
+- 解釋「為何這樣設計」，提供可獨立使用的 TL;DR、必要範例與比較表。
+- 一般 component 分析以約 150 行為目標；深入研究依使用者要求調整。
+- 使用者的應用情境優先：一般 C++、LeetCode、Real-Time 或 Embedded。
+- 區分標準保證、實作細節與實驗結果；未執行的驗證不宣稱通過。
+- 先找現有文章，完成後補入適當分區索引。
 
-## 使用方式
+## 編輯範圍
 
-### 方式 1: 透過 Roo Code Mode（推薦）
+原 Roo mode 的 `fileRegex` 限制只適用於 Roo。轉換後的 agent／skill 以工作流程指示維持「只編輯本次任務相關 Markdown」；這不等於工具層的副檔名權限限制。仍需遵循各工具本身的 permissions。
 
-Mode 已配置在專案根目錄的 [`.roomodes`](../../.roomodes) 文件中。
+Claude agent 不開放 Bash，因此編譯與 `git diff --check` 應由主對話執行並回報結果。
 
-1. 重啟 Roo Code 或重新載入專案
-2. 切換到 mode：`/mode cpp-std-analyzer` 或選擇「🔬 C++ STL Analyzer」
-3. 提供要分析的 STL component 名稱
-4. Agent 會產出心法文件
+## 維護位置
 
-### 方式 2: 直接使用 Prompt
+- [共用 workflow](../../.agents/skills/cpp-std-analyzer/SKILL.md)：範圍、流程與驗證要求。
+- [詳細分析指南](system_prompt.md)：設計分析與格式參考，也可手動帶入其他對話使用。
+- [文件模板](template.md)：文章結構參考。
+- [String API 範例](../../CppDesignConcepts/Container/cpp_string_api_reference.md)：分析粒度參考。
+- [舊版 Roo Mode 規格](MODE_SPEC.md)：保留原工具格式說明。
 
-複製 [`system_prompt.md`](./system_prompt.md) 的內容，然後：
+## 格式參考
 
-```
-請分析 std::vector 的 API 設計，產出類似 cpp_string_api_reference.md 的心法文件
-```
-
-## 適用範圍
-
-- **容器**：vector, deque, list, map, unordered_map, set, etc.
-- **算法**：sort, binary_search, partition, transform, etc.
-- **工具類**：optional, variant, any, tuple, etc.
-- **智慧指標**：shared_ptr, unique_ptr, weak_ptr
-- **其他**：string_view, span, ranges, etc.
-
-## 文件結構
-
-每份產出的文件會包含：
-
-1. **TL;DR 速查表** - 常用 API 一覽
-2. **設計分析章節** - 每個主要 API 的設計思維
-3. **對比表格** - 不同方法的權衡
-4. **LeetCode 實戰** - 競賽場景建議
-5. **設計原則總結** - 核心哲學
-
-## 範例
-
-已完成的分析：
-- [`cpp_string_api_reference.md`](../../CppDesignConcepts/Container/cpp_string_api_reference.md) - std::string API 設計分析
-
-## 文件模板
-
-參考 [`template.md`](./template.md) 了解標準結構。
-
-## 技術文檔
-
-- **Mode 配置規格：** [`MODE_SPEC.md`](./MODE_SPEC.md) - Roo Code Mode 的 YAML 配置詳解
-- **System Prompt：** [`system_prompt.md`](./system_prompt.md) - 完整的 agent 分析指引
-- **文件模板：** [`template.md`](./template.md) - 標準文件結構
-- **快速開始：** [`QUICKSTART.md`](./QUICKSTART.md) - 使用指南
+- [Codex skills 官方說明](https://developers.openai.com/codex/skills)
+- [Claude Code skills 官方說明](https://code.claude.com/docs/en/skills)
+- [Claude Code subagents 官方說明](https://code.claude.com/docs/en/sub-agents)
+- [Claude Code memory imports](https://code.claude.com/docs/en/memory)
