@@ -1,5 +1,7 @@
 # C++11 多執行緒支援
 
+延伸閱讀：[Mutex Ownership 與跨 Thread 交棒](C%2B%2B11_mutex_ownership_and_thread_handoff.md)，說明非 owner 解鎖為何是 undefined behavior，以及 mutex／semaphore 的差異。
+
 延伸閱讀：[Thread 生命週期與 std::terminate](C%2B%2B11_thread_lifecycle_and_terminate.md)，對照 joinable、解構收尾與 libc++／libstdc++ 原始碼。
 
 延伸閱讀：[std::lock 的 Deadlock 避免實作](C%2B%2B11_std_lock_deadlock_avoidance.md)，追蹤 lock／try_lock／unlock、RAII 與 release 的責任交接。

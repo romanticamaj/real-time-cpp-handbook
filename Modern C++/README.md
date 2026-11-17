@@ -32,6 +32,8 @@
 ## 並行與效能
 
 - [Threading](C%2B%2B11_threading.md)
+- [同步設計心法：單執行緒正確性、鎖、條件等待與同步範圍](C%2B%2B11_synchronization_design.md)
+- [Mutex ownership：同一 thread 解鎖與跨 thread 交棒](C%2B%2B11_mutex_ownership_and_thread_handoff.md)
 - [std::lock：重試、退讓與 deadlock avoidance](C%2B%2B11_std_lock_deadlock_avoidance.md)
 - [Thread 生命週期與 terminate：標準契約、原始碼與實驗](C%2B%2B11_thread_lifecycle_and_terminate.md)
 - [Atomic operations 與 memory ordering](C%2B%2B11_atomic.md)
