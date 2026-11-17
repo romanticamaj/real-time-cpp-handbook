@@ -326,5 +326,5 @@ std::array<int, N> arr(count, value);  // N 和 count 的關係？
 ## 9. 參考資料
 
 - [C++ Reference: std::array](https://en.cppreference.com/w/cpp/container/array)
-- [Aggregate Initialization 詳解](../CppDesignConcepts/aggregate_initialization.md)
+- [Aggregate Initialization 詳解](../aggregate_initialization.md)
 - [容器建構函式模式完整指南](./constructor_patterns.md)

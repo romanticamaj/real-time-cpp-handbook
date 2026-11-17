@@ -84,7 +84,7 @@ std::vector<long long> prefix(3);  // Different type
 std::partial_sum(nums.begin(), nums.end(), prefix.begin());
 ```
 
-For detailed design analysis, see: [`output_iterator_pattern.md`](../Iterator/output_iterator_pattern.md)
+For detailed design analysis, see: [`output_iterator_pattern.md`](../../Iterator/output_iterator_pattern.md)
 
 ## Complexity Analysis
 
